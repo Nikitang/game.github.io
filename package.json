@@ -1,0 +1,39 @@
+{
+    "name": "game.github.io",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "concurrently \"tsx ./node_modules/.bin/webpack serve --config webpack.config.ts --env mode=production\" \"tsx src/server.ts\"",
+        "build:dev": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=development",
+        "build:prod": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=production"
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/node": "^22.9.1",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@types/webpack": "^5.28.5",
+        "@types/webpack-dev-server": "^4.7.2",
+        "concurrently": "^9.1.0",
+        "express": "^4.21.1",
+        "html-webpack-plugin": "^5.6.3",
+        "ts-loader": "^9.5.1",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.19.2",
+        "typescript": "^5.6.3",
+        "webpack": "^5.96.1",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-middleware": "^7.4.2"
+    },
+    "dependencies": {
+        "axios": "^1.7.8",
+        "cors": "^2.8.5",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    }
+}
