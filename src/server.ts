@@ -37,6 +37,6 @@ app.get('/words', (req, res) => {
         res.status(500).send({ error: 'Error reading data' });
     }
 });
-app.listen(5185, () => {
+app.listen(5034, () => {
     console.log('run');
 });
