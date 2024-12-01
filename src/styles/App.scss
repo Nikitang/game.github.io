@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+}
+
+.init-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/images/init-bg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.1;
+    }
+
+    &__cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 1100px;
+        height: 700px;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1100px;
+            height: 700px;
+            background-image: url('../assets/images/bg-cart.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #ceccc6;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        &-title {
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 120px;
+            width: 170px;
+            height: 80px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.5s;
+
+            &:hover {
+                background-color: #fff;
+                color: #333;
+                transform: scale(1.1);
+            }
+        }
+    }
+}

@@ -18,7 +18,7 @@ app.use(cors());
 app.use(
     webpackDevMiddleware(compiler, {
         publicPath: config({ mode: 'production' }).output?.publicPath,
-    })
+    }),
 );
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
@@ -37,6 +37,6 @@ app.get('/words', (req, res) => {
         res.status(500).send({ error: 'Error reading data' });
     }
 });
-app.listen(5034, () => {
+app.listen(5004, () => {
     console.log('run');
 });

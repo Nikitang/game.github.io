@@ -19,9 +19,8 @@ export default (env: Env) => {
 
     const config: Configuration = {
         mode: env.mode ?? 'development',
-        entry: {
-            front: path.resolve(__dirname, 'src', 'index.tsx'),
-        },
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: '[name].bundle.js',
@@ -39,13 +38,14 @@ export default (env: Env) => {
                     test: /\.s[ac]ss$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: true,
-                            },
-                        },
-                        ,
+                        'css-loader',
+                        // {
+                        //     loader: 'css-loader',
+                        //     options: {
+                        //         modules: true,
+                        //     },
+                        // },
+                        // ,
                         'sass-loader',
                     ],
                 },
@@ -53,6 +53,10 @@ export default (env: Env) => {
                     test: /\.tsx?$/,
                     use: 'ts-loader',
                     exclude: /node_modules/,
+                },
+                {
+                    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource',
                 },
             ],
         },
@@ -63,7 +67,10 @@ export default (env: Env) => {
         devServer: {
             static: path.resolve(__dirname, 'dist'),
             host: 'localhost',
-            port: 5035,
+            port: 5005,
+        },
+        optimization: {
+            usedExports: true,
         },
     };
     return config;

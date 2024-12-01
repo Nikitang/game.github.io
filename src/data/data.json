@@ -1,3 +1,5 @@
 {
-    "words": ["ball", "paper"]
+    "easyLevel": ["ball", "paper", "sugar"],
+    "middleLevel": ["football", "college", "history"],
+    "hardLevel": ["component", "cucumber", "mountain"]
 }
