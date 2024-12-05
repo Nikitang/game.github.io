@@ -4,6 +4,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack, { Configuration } from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { ProxyConfigArrayItem } from 'webpack-dev-server';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,8 +17,20 @@ interface Env {
     mode: Mode;
 }
 
+export const expressPort = 5000;
+const appPort = 5001;
+
 export default (env: Env) => {
-    console.log(env);
+    const isDev = env.mode === 'development';
+
+    const setProxy: ProxyConfigArrayItem[] = [
+        {
+            context: ['/api'],
+            target: `http://localhost:${expressPort}`,
+            secure: false,
+            changeOrigin: true,
+        },
+    ];
 
     const config: Configuration = {
         mode: env.mode ?? 'development',
@@ -29,29 +44,46 @@ export default (env: Env) => {
         },
         plugins: [
             new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
-            new webpack.ProgressPlugin(),
+            isDev ? new webpack.ProgressPlugin() : undefined,
             new MiniCssExtractPlugin(),
-        ],
+            isDev && new webpack.HotModuleReplacementPlugin(),
+            new ReactRefreshWebpackPlugin(),
+        ].filter(Boolean),
         module: {
             rules: [
                 {
-                    test: /\.s[ac]ss$/i,
+                    test: /\.module\.s[ac]ss$/,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        'css-loader',
-                        // {
-                        //     loader: 'css-loader',
-                        //     options: {
-                        //         modules: true,
-                        //     },
-                        // },
-                        // ,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    localIdentName: '[name]__[local]--[hash:base64:5]',
+                                },
+                            },
+                        },
                         'sass-loader',
                     ],
                 },
                 {
+                    test: /\.s[ac]ss$/i,
+                    exclude: /\.module\.s[ac]ss$/,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                },
+                {
                     test: /\.tsx?$/,
-                    use: 'ts-loader',
+                    use: [
+                        {
+                            loader: 'ts-loader',
+                            options: {
+                                getCustomTransformers: () => ({
+                                    before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                                }),
+                                transpileOnly: isDev,
+                            },
+                        },
+                    ],
                     exclude: /node_modules/,
                 },
                 {
@@ -63,14 +95,21 @@ export default (env: Env) => {
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
         },
-        devtool: env.mode === 'development' ? 'inline-source-map' : false,
+        devtool: isDev ? 'inline-source-map' : false,
         devServer: {
             static: path.resolve(__dirname, 'dist'),
             host: 'localhost',
-            port: 5005,
+            port: appPort,
+            proxy: setProxy,
+            hot: true,
         },
         optimization: {
             usedExports: true,
+        },
+        performance: {
+            hints: false,
+            maxEntrypointSize: 512000,
+            maxAssetSize: 512000,
         },
     };
     return config;

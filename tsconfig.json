@@ -17,5 +17,5 @@
         "allowImportingTsExtensions": false,
         "outDir": "./dist"
     },
-    "include": ["src", "global.d.ts"]
+    "include": ["src", "global.d.ts", "server.ts"]
 }

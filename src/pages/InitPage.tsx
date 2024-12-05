@@ -9,7 +9,7 @@ const InitPage: FC = () => {
                     <span>Виселица</span>
                 </div>
                 <Link to={'/main'} className="init-page__cart-btn">
-                    Start
+                    Starting
                 </Link>
             </div>
         </div>

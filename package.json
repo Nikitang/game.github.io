@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "concurrently \"tsx ./node_modules/.bin/webpack serve --config webpack.config.ts --env mode=production\" \"tsx src/server.ts\"",
+        "start": "concurrently \"tsx ./node_modules/.bin/webpack serve --config webpack.config.ts --env mode=production\" \"tsx server.ts\"",
         "build:dev": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=development",
         "build:prod": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=production"
     },
@@ -13,7 +13,9 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
         "@types/cors": "^2.8.17",
+        "@types/http-proxy-middleware": "^1.0.0",
         "@types/node": "^22.9.1",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
@@ -23,7 +25,10 @@
         "css-loader": "^7.1.2",
         "express": "^4.21.1",
         "html-webpack-plugin": "^5.6.3",
+        "http-proxy-middleware": "^3.0.3",
         "mini-css-extract-plugin": "^2.9.2",
+        "react-refresh": "^0.14.2",
+        "react-refresh-typescript": "^2.0.9",
         "sass": "^1.81.0",
         "sass-loader": "^16.0.3",
         "style-loader": "^4.0.0",
