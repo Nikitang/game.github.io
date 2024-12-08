@@ -17,8 +17,8 @@ interface Env {
     mode: Mode;
 }
 
-export const expressPort = 5000;
-const appPort = 5001;
+export const expressPort = 5038;
+const appPort = 5039;
 
 export default (env: Env) => {
     const isDev = env.mode === 'development';
@@ -70,6 +70,10 @@ export default (env: Env) => {
                     test: /\.s[ac]ss$/i,
                     exclude: /\.module\.s[ac]ss$/,
                     use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                },
+                {
+                    test: /\.css$/i,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader'],
                 },
                 {
                     test: /\.tsx?$/,
