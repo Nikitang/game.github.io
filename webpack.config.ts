@@ -17,8 +17,8 @@ interface Env {
     mode: Mode;
 }
 
-export const expressPort = 5038;
-const appPort = 5039;
+export const expressPort = 5002;
+export const appPort = 5003;
 
 export default (env: Env) => {
     const isDev = env.mode === 'development';

@@ -35,6 +35,7 @@ app.get('/api/words', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+    console.log(`Requested path: ${req.path}`);
     res.status(200).sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 

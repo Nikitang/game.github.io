@@ -1,8 +1,8 @@
-make start:
+start:
 	npm run start
 
-make dev: 
+dev: 
 	npm run build:dev
 
-make prod:
+prod:
 	npm run build:prod

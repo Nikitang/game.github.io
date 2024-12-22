@@ -1,14 +1,63 @@
+@mixin btn-style {
+    width: 200px;
+    height: 80px;
+    border: none;
+    color: #fff;
+
+    border-radius: 10px;
+    transition: ease-in-out 0.3s;
+
+    &:hover {
+        transform: scale(1.2);
+        background: none;
+        font-size: 20px;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .carousel {
     width: 1000px;
-    height: 400px;
+    height: 600px;
 }
 
 .images {
     opacity: 0.2;
-    height: 400px;
+    height: 600px;
     width: 1000px;
 }
 
 .text {
     color: black;
+    margin-bottom: 200px;
+}
+
+.easy {
+    @include btn-style();
+    background-color: green;
+    &:hover {
+        border: solid 1px green;
+        color: green;
+    }
+}
+
+.middle {
+    @include btn-style();
+    background-color: blue;
+    &:hover {
+        border: solid 1px blue;
+        color: blue;
+    }
+}
+
+.hard {
+    @include btn-style();
+    background-color: red;
+    &:hover {
+        border: solid 1px red;
+        color: red;
+    }
 }
