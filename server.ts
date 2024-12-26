@@ -12,16 +12,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const compiler = webpack(config({ mode: 'production' }));
 
 app.use(cors());
-app.use(webpackDevMiddleware(compiler));
+// const compiler = webpack(config({ mode: 'production' }));
+// app.use(webpackDevMiddleware(compiler));
 // app.use(
 //     webpackDevMiddleware(compiler, {
 //         publicPath: config({ mode: 'production' }).output?.publicPath,
 //     }),
 // );
-app.use(express.static(path.resolve(__dirname, 'dist')));
+// app.use(express.static(path.resolve(__dirname, 'dist')));
 
 app.get('/api/words', (req, res) => {
     try {
@@ -34,10 +34,10 @@ app.get('/api/words', (req, res) => {
     }
 });
 
-app.get('*', (req, res) => {
-    console.log(`Requested path: ${req.path}`);
-    res.status(200).sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     console.log(`Requested path: ${req.path}`);
+//     res.status(200).sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+// });
 
 app.listen(expressPort, () => {
     console.log('Серевер запущен.');

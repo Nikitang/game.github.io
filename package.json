@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start:without": "tsx ./node_modules/.bin/webpack serve --config webpack.config.ts --env mode=production",
         "start": "concurrently \"tsx ./node_modules/.bin/webpack serve --config webpack.config.ts --env mode=production\" \"tsx server.ts\"",
         "build:dev": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=development",
         "build:prod": "tsx ./node_modules/.bin/webpack --config webpack.config.ts --env mode=production"

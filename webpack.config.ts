@@ -17,8 +17,8 @@ interface Env {
     mode: Mode;
 }
 
-export const expressPort = 5002;
-export const appPort = 5003;
+export const expressPort = 5013;
+export const appPort = 5014;
 
 export default (env: Env) => {
     const isDev = env.mode === 'development';
@@ -106,6 +106,7 @@ export default (env: Env) => {
             port: appPort,
             proxy: setProxy,
             hot: true,
+            historyApiFallback: true,
         },
         optimization: {
             usedExports: true,

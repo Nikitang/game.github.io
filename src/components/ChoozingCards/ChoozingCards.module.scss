@@ -17,6 +17,9 @@
 .container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
 }
 
 .carousel {
@@ -33,6 +36,15 @@
 .text {
     color: black;
     margin-bottom: 200px;
+    font-family: 'Montserrat', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.header {
+    margin: 4vh 0 4vh 0;
+    font-family: 'Montserrat', serif;
 }
 
 .easy {
